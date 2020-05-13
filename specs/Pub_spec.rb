@@ -8,7 +8,7 @@ require_relative('../Drink.rb')
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 class PubTest < MiniTest::Test
   def setup()
-    @customer1 = Customer.new("Father Jack", 20, 65)
+    @customer1 = Customer.new("Father Jack", 20, 65, 0)
 
     @drink1 = Drink.new("Tennents", 3, 4)
     @drink2 = Drink.new("Gin and Tonic", 5, 5)
@@ -28,14 +28,28 @@ class PubTest < MiniTest::Test
   def test_till_balance()
     assert_equal(100,@pub_name.till_balance)
   end
-  def test_can_sell_drink
-    @pub_name.sell_drink(@drink1)
-    assert_equal(2, @pub_name.drinks.size)
+
+  def test_customer_pished
+    actual = @pub_name.drunkeness(@customer1)
+    assert_equal(false, actual)
   end
 
   def test_over_18
     actual = @pub_name.over_18(@customer1)
     assert_equal(true, actual)
   end
+
+  def test_can_sell_drink
+    @pub_name.sell_drink(@drink1)
+    assert_equal(2, @pub_name.drinks.size)
+  end
+
+  def test_can_sell_multiple_drinks
+    @pub_name.sell_drink(@drink1)
+    @pub_name.sell_drink(@drink2)
+    @pub_name.sell_drink(@drink3)
+    assert_equal(0, @pub_name.drinks.size)
+  end
+
 
 end

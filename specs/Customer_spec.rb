@@ -9,7 +9,7 @@ require_relative('../Drink.rb')
 class TestCustomer < Minitest::Test
 
   def setup
-    @customer1 = Customer.new("Father Jack", 20, 65)
+    @customer1 = Customer.new("Father Jack", 20, 65, 0)
 
     @drink1 = Drink.new("Tennents", 3, 4)
     @drink2 = Drink.new("Gin and Tonic", 5, 5)
@@ -24,6 +24,10 @@ class TestCustomer < Minitest::Test
 
   def test_wallet_value
     assert_equal(20, @customer1.wallet_value)
+  end
+
+  def test_customer_drunkeness
+    assert_equal(0, @customer1.drunkeness)
   end
 
   def test_customer_age

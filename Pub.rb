@@ -21,6 +21,14 @@ class Pub
     return sold_drink
   end
 
+  def drunkeness(customer)
+    result = false
+      if customer.drunkeness >= 16
+        return true
+      end
+    return result
+  end
+
   def over_18(customer)
     result = false
       if customer.age >= 18
