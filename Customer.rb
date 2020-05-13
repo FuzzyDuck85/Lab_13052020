@@ -29,8 +29,10 @@ class Customer
     p drunkeness
   end
 
-
-
-
-
+  def buy_food(food, pub_name)
+    pub_name.sell_food(food)
+    @wallet -= food.price
+    @drunkeness -= food.rejuvination_level
+    p drunkeness
+  end
 end
